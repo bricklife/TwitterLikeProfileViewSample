@@ -12,7 +12,8 @@
 
 @interface ProfileTableViewController ()
 
-@property (nonatomic, strong) UIView* headerView;
+@property (nonatomic, weak) ProfileHeaderViewController* profileHeaderViewController;
+@property (nonatomic, weak) UIView* headerView;
 @property (nonatomic) CGRect initialFrame;
 @property (nonatomic) CGFloat defaultViewHeight;
 @property (nonatomic) CGFloat minimumHeaderViewHeight;
@@ -33,11 +34,7 @@
     
     [self.tableView addSubview:_headerView];
     
-    for (UIViewController *vc in self.childViewControllers) {
-        if ([vc isKindOfClass:[ProfileHeaderViewController class]]) {
-            _minimumHeaderViewHeight = ((ProfileHeaderViewController *)vc).minimumViewHeight;
-        }
-    }
+    _minimumHeaderViewHeight = _profileHeaderViewController.minimumViewHeight;
 }
 
 - (void)viewWillLayoutSubviews {
@@ -51,6 +48,12 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Header"]) {
+        self.profileHeaderViewController = segue.destinationViewController;
+    }
 }
 
 #pragma mark - Table view data source

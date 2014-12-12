@@ -16,7 +16,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <connections>
-                                <segue destination="O2f-L8-Q1f" kind="embed" id="9dP-l3-GgH"/>
+                                <segue destination="O2f-L8-Q1f" kind="embed" identifier="Header" id="9dP-l3-GgH"/>
                             </connections>
                         </containerView>
                         <prototypes>
